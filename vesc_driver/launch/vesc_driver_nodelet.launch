@@ -29,6 +29,6 @@
   <node pkg="nodelet" type="nodelet" name="$(arg node_name)"
         args="load vesc_driver::VescDriverNodelet $(arg manager)" >
     <param name="port" value="$(arg port)" />
-  </node>    
+  </node>
 
 </launch>
