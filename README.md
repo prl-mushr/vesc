@@ -10,7 +10,7 @@ Contains the code for interfacing with the VESC hardware.
   - `vesc_msgs`: Contains only messages related to the VESC.
 
 ### API
-
+For adjusting params see `vesc_main/config/`.
 #### Publishers
 Note, some topics are omitted because they are only published and subscribed to within the vesc. For more info `rosnode list.`
 
