@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-import rospy
-
-from std_msgs.msg import Float64
+import copy as copy
 
 # import some utils.
 import numpy as np
-import copy as copy
+
+import rospy
+from std_msgs.msg import Float64
 
 
 class InterpolateThrottle:
