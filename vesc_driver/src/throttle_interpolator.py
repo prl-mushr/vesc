@@ -8,32 +8,32 @@ import numpy as np
 import copy as copy
 
 class InterpolateThrottle:
-    def __init__(self):
+    def __init__(self, car_name):
 
         # Allow our topics to be dynamic.
-        self.rpm_input_topic   = rospy.get_param('~rpm_input_topic', '/vesc/commands/motor/unsmoothed_speed')
-        self.rpm_output_topic  = rospy.get_param('~rpm_output_topic', '/vesc/commands/motor/speed')
+        self.rpm_input_topic   = rospy.get_param('~rpm_input_topic', '{}/vesc/commands/motor/unsmoothed_speed'.format(car_name))
+        self.rpm_output_topic  = rospy.get_param('~rpm_output_topic', '{}/vesc/commands/motor/speed'.format(car_name))
 
-        self.servo_input_topic   = rospy.get_param('~servo_input_topic', '/vesc/commands/servo/unsmoothed_position')
-        self.servo_output_topic  = rospy.get_param('~servo_output_topic', '/vesc/commands/servo/position')
+        self.servo_input_topic   = rospy.get_param('~servo_input_topic', '{}/vesc/commands/servo/unsmoothed_position'.format(car_name))
+        self.servo_output_topic  = rospy.get_param('~servo_output_topic', '{}/vesc/commands/servo/position'.format(car_name))
 
-        self.max_acceleration = rospy.get_param('/vesc/max_acceleration')
-        self.max_rpm = rospy.get_param('/vesc/vesc_driver/speed_max')
-        self.min_rpm = rospy.get_param('/vesc/vesc_driver/speed_min')
-        self.throttle_smoother_rate = rospy.get_param('/vesc/throttle_smoother_rate')
-        self.speed_to_erpm_gain = rospy.get_param('/vesc/speed_to_erpm_gain')
+        self.max_acceleration = rospy.get_param('{}/vesc/max_acceleration'.format(car_name))
+        self.max_rpm = rospy.get_param('{}/vesc/vesc_driver/speed_max'.format(car_name))
+        self.min_rpm = rospy.get_param('{}/vesc/vesc_driver/speed_min'.format(car_name))
+        self.throttle_smoother_rate = rospy.get_param('{}/vesc/throttle_smoother_rate'.format(car_name))
+        self.speed_to_erpm_gain = rospy.get_param('{}/vesc/speed_to_erpm_gain'.format(car_name))
 
-        self.max_servo_speed = rospy.get_param('/vesc/max_servo_speed')
-        self.steering_angle_to_servo_gain = rospy.get_param('/vesc/steering_angle_to_servo_gain')
-        self.servo_smoother_rate = rospy.get_param('/vesc/servo_smoother_rate')
-        self.max_servo = rospy.get_param('/vesc/vesc_driver/servo_max')
-        self.min_servo = rospy.get_param('/vesc/vesc_driver/servo_min')
+        self.max_servo_speed = rospy.get_param('{}/vesc/max_servo_speed'.format(car_name))
+        self.steering_angle_to_servo_gain = rospy.get_param('{}/vesc/steering_angle_to_servo_gain'.format(car_name))
+        self.servo_smoother_rate = rospy.get_param('{}/vesc/servo_smoother_rate'.format(car_name))
+        self.max_servo = rospy.get_param('{}/vesc/vesc_driver/servo_max'.format(car_name))
+        self.min_servo = rospy.get_param('{}/vesc/vesc_driver/servo_min'.format(car_name))
 
         # Variables
         self.last_rpm = 0
         self.desired_rpm = self.last_rpm
 
-        self.last_servo = rospy.get_param('/vesc/steering_angle_to_servo_offset')
+        self.last_servo = rospy.get_param('{}/vesc/steering_angle_to_servo_offset'.format(car_name))
         self.desired_servo_position = self.last_servo
 
         # Create topic subscribers and publishers
@@ -86,8 +86,11 @@ class InterpolateThrottle:
 
 # Boilerplate node spin up.
 if __name__ == '__main__':
+    import sys
+    car_name = "" if len(sys.argv) < 2 else sys.argv[1]
+
     try:
         rospy.init_node('Throttle_Interpolator')
-        p = InterpolateThrottle()
+        p = InterpolateThrottle(car_name=car_name)
     except rospy.ROSInterruptException:
         pass
