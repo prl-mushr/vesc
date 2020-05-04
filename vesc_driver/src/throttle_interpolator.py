@@ -26,9 +26,9 @@ class InterpolateThrottle:
             "~servo_output_topic", "{}/commands/servo/position".format(car_name)
         )
 
-        self.max_acceleration = rospy.get_param(rospy.search_param("{}/max_acceleration").format(car_name))
-        self.max_rpm = rospy.get_param(rospy.search_param("{}/vesc_driver/speed_max").format(car_name))
-        self.min_rpm = rospy.get_param(rospy.search_param("{}/vesc_driver/speed_min").format(car_name))
+        self.max_acceleration = rospy.get_param(rospy.search_param("{}/max_acceleration".format(car_name)))
+        self.max_rpm = rospy.get_param(rospy.search_param("{}/vesc_driver/speed_max".format(car_name))
+        self.min_rpm = rospy.get_param(rospy.search_param("{}/vesc_driver/speed_min".format(car_name)))
         self.throttle_smoother_rate = rospy.get_param(
             rospy.search_param("{}/throttle_smoother_rate".format(car_name))
         )
@@ -43,8 +43,8 @@ class InterpolateThrottle:
         self.servo_smoother_rate = rospy.get_param(
             rospy.search_param("{}/servo_smoother_rate".format(car_name))
         )
-        self.max_servo = rospy.get_param(rospy.search_param("{}/vesc_driver/servo_max").format(car_name))
-        self.min_servo = rospy.get_param(rospy.search_param("{}/vesc_driver/servo_min").format(car_name))
+        self.max_servo = rospy.get_param(rospy.search_param("{}/vesc_driver/servo_max".format(car_name)))
+        self.min_servo = rospy.get_param(rospy.search_param("{}/vesc_driver/servo_min".format(car_name)))
 
         # Variables
         self.last_rpm = 0
