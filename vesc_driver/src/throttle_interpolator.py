@@ -127,7 +127,7 @@ if __name__ == '__main__':
     car_name = "" if len(sys.argv) < 2 else sys.argv[1]
 
     try:
-        rospy.init_node('Throttle_Interpolator')
+        rospy.init_node("Throttle_Interpolator")
         p = InterpolateThrottle(car_name=car_name)
     except rospy.ROSInterruptException:
         pass
