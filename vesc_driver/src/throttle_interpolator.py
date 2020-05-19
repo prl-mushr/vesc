@@ -26,32 +26,32 @@ class InterpolateThrottle:
             "~servo_output_topic", "{}/commands/servo/position".format(car_name)
         )
 
-        self.max_acceleration = rospy.get_param(rospy.search_param("{}/max_acceleration".format(car_name)))
-        self.max_rpm = rospy.get_param(rospy.search_param("{}/vesc_driver/speed_max".format(car_name)))
-        self.min_rpm = rospy.get_param(rospy.search_param("{}/vesc_driver/speed_min".format(car_name)))
+        self.max_acceleration = rospy.get_param(rospy.search_param("max_acceleration"))
+        self.max_rpm = rospy.get_param(rospy.search_param("vesc_driver/speed_max"))
+        self.min_rpm = rospy.get_param(rospy.search_param("vesc_driver/speed_min"))
         self.throttle_smoother_rate = rospy.get_param(
-            rospy.search_param("{}/throttle_smoother_rate".format(car_name))
+            rospy.search_param("throttle_smoother_rate")
         )
         self.speed_to_erpm_gain = rospy.get_param(
-            rospy.search_param("{}/speed_to_erpm_gain".format(car_name))
+            rospy.search_param("speed_to_erpm_gain")
         )
 
-        self.max_servo_speed = rospy.get_param(rospy.search_param("{}/max_servo_speed".format(car_name)))
+        self.max_servo_speed = rospy.get_param(rospy.search_param("max_servo_speed"))
         self.steering_angle_to_servo_gain = rospy.get_param(
-            rospy.search_param("{}/steering_angle_to_servo_gain".format(car_name))
+            rospy.search_param("steering_angle_to_servo_gain")
         )
         self.servo_smoother_rate = rospy.get_param(
-            rospy.search_param("{}/servo_smoother_rate".format(car_name))
+            rospy.search_param("servo_smoother_rate")
         )
-        self.max_servo = rospy.get_param(rospy.search_param("{}/vesc_driver/servo_max".format(car_name)))
-        self.min_servo = rospy.get_param(rospy.search_param("{}/vesc_driver/servo_min".format(car_name)))
+        self.max_servo = rospy.get_param(rospy.search_param("vesc_driver/servo_max"))
+        self.min_servo = rospy.get_param(rospy.search_param("vesc_driver/servo_min"))
 
         # Variables
         self.last_rpm = 0
         self.desired_rpm = self.last_rpm
 
         self.last_servo = rospy.get_param(
-            rospy.search_param("{}/steering_angle_to_servo_offset".format(car_name))
+            rospy.search_param("steering_angle_to_servo_offset")
         )
         self.desired_servo_position = self.last_servo
 
