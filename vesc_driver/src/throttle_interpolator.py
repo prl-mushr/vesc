@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 import rospy
-
 from std_msgs.msg import Float64
-
-# import some utils.
-import numpy as np
-import copy as copy
 
 
 class InterpolateThrottle:
@@ -20,7 +15,8 @@ class InterpolateThrottle:
         )
 
         self.servo_input_topic = rospy.get_param(
-            "~servo_input_topic", "{}/commands/servo/unsmoothed_position".format(car_name)
+            "~servo_input_topic",
+            "{}/commands/servo/unsmoothed_position".format(car_name)
         )
         self.servo_output_topic = rospy.get_param(
             "~servo_output_topic", "{}/commands/servo/position".format(car_name)
@@ -122,8 +118,9 @@ class InterpolateThrottle:
 
 
 # Boilerplate node spin up.
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
+
     car_name = "" if len(sys.argv) < 2 else sys.argv[1]
 
     try:
