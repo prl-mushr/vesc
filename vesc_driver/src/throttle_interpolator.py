@@ -5,7 +5,6 @@ from std_msgs.msg import Float64
 
 class InterpolateThrottle:
     def __init__(self, car_name):
-
         # Allow our topics to be dynamic.
         self.rpm_input_topic = rospy.get_param(
             "~rpm_input_topic", "{}/commands/motor/unsmoothed_speed".format(car_name)
@@ -121,7 +120,7 @@ class InterpolateThrottle:
 if __name__ == "__main__":
     import sys
 
-    car_name = "" if len(sys.argv) < 2 else sys.argv[1]
+    car_name = "car" if len(sys.argv) < 2 else sys.argv[1]
 
     try:
         rospy.init_node("Throttle_Interpolator")
