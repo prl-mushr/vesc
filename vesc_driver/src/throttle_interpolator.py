@@ -57,14 +57,14 @@ class InterpolateThrottle:
         rospy.spin()
 
     def _publish_throttle_command(self, evt):
-        desired_delta = self.desired_rpm-self.last_rpm
+        desired_delta = self.desired_rpm - self.last_rpm
         clipped_delta = max(min(desired_delta, self.max_delta_rpm), -self.max_delta_rpm)
         smoothed_rpm = self.last_rpm + clipped_delta
         self.last_rpm = smoothed_rpm
         # print self.desired_rpm, smoothed_rpm
         self.rpm_output.publish(Float64(smoothed_rpm))
 
-    def _process_throttle_command(self,msg):
+    def _process_throttle_command(self, msg):
         input_rpm = msg.data
         # Do some sanity clipping
         input_rpm = min(max(input_rpm, self.min_rpm), self.max_rpm)
