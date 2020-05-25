@@ -35,21 +35,15 @@ class InterpolateThrottle:
             rospy.search_param("speed_to_erpm_gain")
         )
 
-        self.max_servo_speed = rospy.get_param(
-            rospy.search_param("max_servo_speed")
-        )
+        self.max_servo_speed = rospy.get_param(rospy.search_param("max_servo_speed"))
         self.steering_angle_to_servo_gain = rospy.get_param(
             rospy.search_param("steering_angle_to_servo_gain")
         )
         self.servo_smoother_rate = rospy.get_param(
             rospy.search_param("servo_smoother_rate")
         )
-        self.max_servo = rospy.get_param(
-            rospy.search_param("vesc_driver/servo_max")
-        )
-        self.min_servo = rospy.get_param(
-            rospy.search_param("vesc_driver/servo_min")
-        )
+        self.max_servo = rospy.get_param(rospy.search_param("vesc_driver/servo_max"))
+        self.min_servo = rospy.get_param(rospy.search_param("vesc_driver/servo_min"))
 
         # Variables
         self.last_rpm = 0
