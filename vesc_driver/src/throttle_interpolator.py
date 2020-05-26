@@ -6,7 +6,8 @@ from std_msgs.msg import Float64
 
 
 class InterpolateThrottle:
-    def __init__(self, car_name):
+    def __init__(self):
+        car_name = rospy.get_param("~car_name", "/car")
 
         # Allow our topics to be dynamic.
         self.rpm_input_topic = rospy.get_param(
@@ -122,12 +123,8 @@ class InterpolateThrottle:
 
 # Boilerplate node spin up.
 if __name__ == "__main__":
-    import sys
-
-    car_name = "/car" if len(sys.argv) < 2 else sys.argv[1]
-
     try:
         rospy.init_node("Throttle_Interpolator")
-        p = InterpolateThrottle(car_name=car_name)
+        p = InterpolateThrottle()
     except rospy.ROSInterruptException:
         pass

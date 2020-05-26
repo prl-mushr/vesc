@@ -3,7 +3,7 @@
     <arg name="racecar_version" />
     <arg name="vesc_config" default="$(find vesc_main)/config/$(arg racecar_version)/vesc.yaml" />
 
-    <arg name="car_name"/>
+    <arg name="car_name" default="car" />
 
     <rosparam file="$(arg vesc_config)" command="load" />
 
