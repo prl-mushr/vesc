@@ -1,29 +1,29 @@
 #!/usr/bin/env python
-import rospy
-
-from std_msgs.msg import Float64
 
 # import some utils.
-import numpy as np
-import copy as copy
+import rospy
+from std_msgs.msg import Float64
 
 
 class InterpolateThrottle:
     def __init__(self):
+        car_name = rospy.get_param("~car_name", "/car")
 
         # Allow our topics to be dynamic.
         self.rpm_input_topic = rospy.get_param(
-            "~rpm_input_topic", "commands/motor/unsmoothed_speed"
+            "~rpm_input_topic",
+            "{}/vesc/commands/motor/unsmoothed_speed".format(car_name),
         )
         self.rpm_output_topic = rospy.get_param(
-            "~rpm_output_topic", "commands/motor/speed"
+            "~rpm_output_topic", "{}/vesc/commands/motor/speed".format(car_name)
         )
 
         self.servo_input_topic = rospy.get_param(
-            "~servo_input_topic", "commands/servo/unsmoothed_position"
+            "~servo_input_topic",
+            "{}/vesc/commands/servo/unsmoothed_position".format(car_name),
         )
         self.servo_output_topic = rospy.get_param(
-            "~servo_output_topic", "commands/servo/position"
+            "~servo_output_topic", "{}/vesc/commands/servo/position".format(car_name)
         )
 
         self.max_acceleration = rospy.get_param(rospy.search_param("max_acceleration"))
