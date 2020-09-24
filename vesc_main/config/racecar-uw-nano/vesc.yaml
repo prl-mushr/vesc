@@ -1,6 +1,6 @@
 # erpm (electrical rpm) = speed_to_erpm_gain * speed (meters / second) + speed_to_erpm_offset
 #-4614
-speed_to_erpm_gain: -2000
+speed_to_erpm_gain: -3500
 speed_to_erpm_offset: 0.0
 
 tachometer_ticks_to_meters_gain: 0.00225
@@ -13,7 +13,7 @@ max_acceleration: 2.5 # meters/second^2
 throttle_smoother_rate: 75.0 # messages/sec
 
 # servo value (0 to 1) =  steering_angle_to_servo_gain * steering angle (radians) + steering_angle_to_servo_offset
-steering_angle_to_servo_gain: 1.2135
+steering_angle_to_servo_gain: 0.95
 steering_angle_to_servo_offset: 0.55
 
 # publish odom to base link tf
