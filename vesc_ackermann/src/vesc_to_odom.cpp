@@ -30,7 +30,7 @@ VescToOdom::VescToOdom(ros::NodeHandle nh, ros::NodeHandle private_nh) :
       return;
     if (!getRequiredParam(nh, "steering_angle_to_servo_offset", steering_to_servo_offset_))
       return;
-    if (!getRequiredParam(nh, "wheelbase", wheelbase_))
+    if (!getRequiredParam(nh, "chassis_length", chassis_length_))
       return;
   }
   private_nh.param("publish_tf", publish_tf_, publish_tf_);
@@ -63,7 +63,7 @@ void VescToOdom::vescStateCallback(const vesc_msgs::VescStateStamped::ConstPtr& 
   if (use_servo_cmd_) {
     current_steering_angle =
       ( last_servo_cmd_->data - steering_to_servo_offset_ ) / steering_to_servo_gain_;
-    current_angular_velocity = current_speed * tan(current_steering_angle) / wheelbase_;
+    current_angular_velocity = current_speed * tan(current_steering_angle) / chassis_length_;
   }
 
   // use current state as last state if this is our first time here
