@@ -65,6 +65,9 @@ install(FILES vesc_driver_nodelet.xml
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 install(DIRECTORY launch/
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
+        
+catkin_install_python(PROGRAMS scripts/throttle_interpolator
+        DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 #############
 ## Testing ##
