@@ -114,6 +114,8 @@ void* VescInterface::Impl::rxThread(void)
     }
 
   }
+  // send 0 back to thread when joined
+  return 0;
 }
 
 
