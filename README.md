@@ -1,4 +1,5 @@
-# MuSHR VESC (Derived from MIT VESC)
+# MuSHR VESC  
+## (Derived from MIT VESC)
 
 Contains the code for interfacing with the VESC hardware.
 
