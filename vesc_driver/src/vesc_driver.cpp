@@ -190,7 +190,10 @@ void VescDriver::brakeCallback(const std_msgs::Float64::ConstPtr& brake)
 void VescDriver::speedCallback(const std_msgs::Float64::ConstPtr& speed)
 {
   if (driver_mode_ = MODE_OPERATING) {
-    vesc_.setSpeed(speed_limit_.clip(speed->data));
+    double clipped_speed = speed_limit_.clip(speed->data);
+    if (std::abs(clipped_speed) < 900 && clipped_speed != 0.0) // min erpm
+        clipped_speed = 920;
+    vesc_.setSpeed(clipped_speed);
   }
 }
 
