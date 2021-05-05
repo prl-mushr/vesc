@@ -192,7 +192,7 @@ void VescDriver::speedCallback(const std_msgs::Float64::ConstPtr& speed)
   if (driver_mode_ = MODE_OPERATING) {
     double clipped_speed = speed_limit_.clip(speed->data);
     if (std::abs(clipped_speed) < 900 && clipped_speed != 0.0) // min erpm
-        clipped_speed = 920;
+        clipped_speed = clipped_speed < 0 ? -920 : 920;
     vesc_.setSpeed(clipped_speed);
   }
 }
