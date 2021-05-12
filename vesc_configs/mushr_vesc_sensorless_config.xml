@@ -72,7 +72,7 @@
     <foc_hall_table_7>255</foc_hall_table_7>
     <foc_sl_erpm>2500</foc_sl_erpm>
     <s_pid_kp>0.0001</s_pid_kp>
-    <s_pid_ki>0.015</s_pid_ki>
+    <s_pid_ki>0.0015</s_pid_ki>
     <s_pid_kd>0</s_pid_kd>
     <s_pid_min_rpm>900</s_pid_min_rpm>
     <p_pid_kp>0.03</p_pid_kp>
