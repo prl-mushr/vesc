@@ -18,7 +18,7 @@
         <remap from="commands/servo/position" to="commands/servo/unsmoothed_position" />
     </node>
 
-    <node pkg="vesc_driver" type="throttle_interpolator.py" name="throttle_interpolator">
+    <node pkg="vesc_driver" type="throttle_interpolator" name="throttle_interpolator">
         <param name="car_name" value="$(arg car_name)" />
     </node>
     <node pkg="vesc_driver" type="vesc_driver_node" name="vesc_driver" respawn="true"/>
